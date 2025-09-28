@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>do it for</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>do it for</h1>
+            <button id="settingsBtn" class="settings-btn">⚙️</button>
+        </div>
+        
+        <div id="mainView" class="main-view">
+            <div id="photoContainer" class="photo-container">
+                <div id="photoPlaceholder" class="photo-placeholder">
+                    <span>📷</span>
+                    <p>Add a photo to get started</p>
+                </div>
+                <img id="userPhoto" class="user-photo" style="display: none;">
+            </div>
+            <div id="motivationText" class="motivation-text">
+                <p id="motivationMessage">Click settings to set up your motivation</p>
+            </div>
+        </div>
+
+        <div id="settingsView" class="settings-view" style="display: none;">
+            <div class="settings-header">
+                <button id="backBtn" class="back-btn">←</button>
+                <h2>Settings</h2>
+            </div>
+            
+            <div class="setting-item">
+                <label for="pronounSelect">Pronoun:</label>
+                <select id="pronounSelect">
+                    <option value="">Select pronoun</option>
+                    <option value="her">her</option>
+                    <option value="him">him</option>
+                    <option value="them">them</option>
+                </select>
+            </div>
+
+            <div class="setting-item">
+                <label for="photoUpload">Upload Photo:</label>
+                <input type="file" id="photoUpload" accept="image/*">
+                <button id="removePhoto" class="remove-btn" style="display: none;">Remove Photo</button>
+            </div>
+
+            <div class="setting-item">
+                <label for="blockedSites">Block Websites:</label>
+                <div class="blocked-sites-container">
+                    <input type="text" id="siteInput" placeholder="Enter website (e.g., facebook.com)">
+                    <button id="addSite" class="add-btn">Add</button>
+                </div>
+                <div id="blockedSitesList" class="blocked-sites-list"></div>
+            </div>
+
+            <button id="saveSettings" class="save-btn">Save</button>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
