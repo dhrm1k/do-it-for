@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 if (result.pronoun) {
-                    motivationMessage.textContent = `Stay focused and do it for ${result.pronoun}!`;
+                    motivationMessage.textContent = `you blocked it for ${result.pronoun}. go and work moron.`;
                 }
             });
         }

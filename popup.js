@@ -133,8 +133,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const siteUrl = siteInput.value.trim();
         if (!siteUrl) return;
 
-        // Clean up the URL (remove protocol, www, trailing slash)
-        const cleanUrl = siteUrl.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, '');
+        // Clean up the URL (remove protocol, www, trailing slash, paths)
+        let cleanUrl = siteUrl.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, '');
+        
+        // Remove any path, query params, etc - just keep the domain
+        cleanUrl = cleanUrl.split('/')[0].split('?')[0].split('#')[0];
+        
+        if (!cleanUrl) return;
+        
+        console.log('Adding site:', cleanUrl);
         
         chrome.storage.local.get(['blockedSites'], function(result) {
             const blockedSites = result.blockedSites || [];
@@ -142,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!blockedSites.includes(cleanUrl)) {
                 blockedSites.push(cleanUrl);
                 chrome.storage.local.set({ blockedSites: blockedSites }, function() {
+                    console.log('Updated blocked sites:', blockedSites);
                     displayBlockedSites(blockedSites);
                     siteInput.value = '';
                 });

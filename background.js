@@ -37,20 +37,46 @@ async function updateBlockingRules() {
         }
         
         // Create new rules for blocked sites
-        const newRules = blockedSites.map((site, index) => ({
-            id: index + 1,
-            priority: 1,
-            action: {
-                type: 'redirect',
-                redirect: {
-                    url: chrome.runtime.getURL(`block.html?blocked=${encodeURIComponent(site)}`)
+        const newRules = [];
+        
+        blockedSites.forEach((site, index) => {
+            // Create rules for both with and without www
+            const baseId = (index * 2) + 1;
+            
+            // Rule for the main domain
+            newRules.push({
+                id: baseId,
+                priority: 1,
+                action: {
+                    type: 'redirect',
+                    redirect: {
+                        url: chrome.runtime.getURL(`block.html?blocked=${encodeURIComponent(site)}`)
+                    }
+                },
+                condition: {
+                    urlFilter: `*://${site}/*`,
+                    resourceTypes: ['main_frame']
                 }
-            },
-            condition: {
-                urlFilter: `*://${site}/*`,
-                resourceTypes: ['main_frame']
+            });
+            
+            // Rule for www version if it doesn't already have www
+            if (!site.startsWith('www.')) {
+                newRules.push({
+                    id: baseId + 1,
+                    priority: 1,
+                    action: {
+                        type: 'redirect',
+                        redirect: {
+                            url: chrome.runtime.getURL(`block.html?blocked=${encodeURIComponent(site)}`)
+                        }
+                    },
+                    condition: {
+                        urlFilter: `*://www.${site}/*`,
+                        resourceTypes: ['main_frame']
+                    }
+                });
             }
-        }));
+        });
         
         if (newRules.length > 0) {
             await chrome.declarativeNetRequest.updateDynamicRules({
@@ -58,7 +84,8 @@ async function updateBlockingRules() {
             });
         }
         
-        console.log(`Updated blocking rules for ${blockedSites.length} sites`);
+        console.log(`Updated blocking rules for ${blockedSites.length} sites:`, blockedSites);
+        console.log(`Created ${newRules.length} blocking rules:`, newRules);
     } catch (error) {
         console.error('Error updating blocking rules:', error);
     }
