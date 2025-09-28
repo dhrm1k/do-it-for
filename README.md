@@ -1,6 +1,6 @@
 # do it for
 
-so i made this browser extension bc i kept getting distracted by stupid websites when i was supposed to be working. you know how it is - you open facebook "just for a minute" and suddenly it's 3 hours later and you've done nothing.
+so we made this browser extension bc i kept getting distracted by stupid websites when i was supposed to be working. you know how it is - you open facebook "just for a minute" and suddenly it's 3 hours later and you've done nothing.
 
 the idea is simple. you upload a photo of someone you care about - could be your mom, your partner, your dog, whoever motivates you. then you pick their pronoun. when you try to visit sites you've blocked, instead of the usual "this site is blocked" message, you see their face and it says "do it for them" (or him/her).
 
