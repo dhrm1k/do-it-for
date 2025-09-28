@@ -1,0 +1,26 @@
+# chrome extension metadata (auto-generated)
+_metadata/
+
+# node modules if you add any
+node_modules/
+
+# build files
+dist/
+build/
+
+# editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# os files
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+
+# temporary files
+*.tmp
+*.temp

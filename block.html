@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Blocked - do it for</title>
+    <link rel="stylesheet" href="block.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="photo-container">
+                <img id="motivationPhoto" class="motivation-photo" style="display: none;">
+                <div id="photoPlaceholder" class="photo-placeholder">
+                    <span>📷</span>
+                </div>
+            </div>
+            
+            <h1>Site Blocked</h1>
+            <p class="main-message" id="motivationMessage">Stay focused and do it for them!</p>
+            
+            <div class="blocked-info">
+                <p>You blocked <strong id="blockedUrl"></strong></p>
+                <p>Remember why you're doing this.</p>
+            </div>
+            
+            <div class="actions">
+                <button id="goBack" class="primary-btn">Go Back</button>
+                <button id="allowOnce" class="secondary-btn">Allow Once</button>
+            </div>
+            
+            <div class="settings-link">
+                <a href="#" id="openSettings">Change settings</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="block.js"></script>
+</body>
+</html>
